@@ -12,7 +12,6 @@ import withFirebaseAuth from 'react-with-firebase-auth'
 
 const NavbarHeader = ({ logged }) => {
 
-
     const handleAuth = (e) => {
         e.preventDefault();
     }
@@ -24,7 +23,6 @@ const NavbarHeader = ({ logged }) => {
             <Nav>
                 <Nav.Link onClick={handleAuth}>{logged ? 'log out' : 'sign in/up'}</Nav.Link>
             </Nav>
-
         </Navbar>
 
     );
