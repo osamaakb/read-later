@@ -1,9 +1,9 @@
-import { db } from '../firebase'
+import { db } from './firebase'
 
 class API {
 
     static addBook = (book) => {
-        db.collection('books').add(book);
+        return db.collection('books').add(book);
     }
 
     static getBooks = () => {
@@ -19,7 +19,7 @@ class API {
     }
 
     static deleteBook = (book) => {
-        db.collection('books')
+        return db.collection('books')
             .doc(book.id)
             .delete();
     }

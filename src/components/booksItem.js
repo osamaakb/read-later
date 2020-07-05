@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import API from './API';
+import API from '../API';
+import Context from "../stateProvider";
 
 
 function BooksItem({ book }) {
+    const [state, dispatch] = useContext(Context);
 
     const handleDelete = (e) => {
         e.preventDefault();
-        API.deleteBook(book)
+        API.deleteBook(book).then(doc => {
+            let newBooksList = state.booksList.filter(a => a.id !== book.id)
+            dispatch({
+                type: 'SET_BOOKS',
+                booksList: newBooksList
+            })
+        })
     }
 
     return (

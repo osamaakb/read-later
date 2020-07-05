@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import API from './API';
+import React, { useState, useEffect, useContext } from 'react';
+import API from '../API';
 import BooksItem from './booksItem';
+import Context from "../stateProvider";
 
 export const BooksList = () => {
-    const [books, setBooks] = useState([]);
+    // const [books, setBooks] = useState([]);
+    const [state, dispatch] = useContext(Context);
 
-    useEffect(() => {
-        API.getBooks().then(books => {
-            setBooks(books)
-            console.log(books);
-
-        });
-    }, [])
+    // useEffect(() => {
+    //     API.getBooks().then(books => {
+    //         setBooks(books)
+    //         console.log(books);
+    //     });
+    // }, [])
 
     return (
         <>
-            {books.map(book =>
-                <BooksItem book={book} />
+            {state.booksList.map((book, i) =>
+                <BooksItem key={i} book={book} />
             )}
         </>
     );
