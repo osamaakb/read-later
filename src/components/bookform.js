@@ -16,6 +16,11 @@ const BookForm = () => {
     };
 
     const pushBook = e => {
+        setBook({
+            title: "",
+            author: ""
+        });
+
         e.preventDefault();
         dispatch({
             type: 'IS_LOADING',
@@ -42,13 +47,13 @@ const BookForm = () => {
                     <Col>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Book Name</Form.Label>
-                            <Form.Control onChange={addBook} id="title" type="text" placeholder="Book Name" />
+                            <Form.Control value={book.title} onChange={addBook} id="title" type="text" placeholder="Book Name" />
                         </Form.Group>
                     </Col>
                     <Col>
                         <Form.Group controlId="formBasicPassword">
                             <Form.Label>Author</Form.Label>
-                            <Form.Control onChange={addBook} id="author" type="text" placeholder="Auth" />
+                            <Form.Control value={book.author} onChange={addBook} id="author" type="text" placeholder="Auth" />
                         </Form.Group>
                     </Col>
                 </Row>
