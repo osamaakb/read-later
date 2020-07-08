@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap'
 const BookForm = () => {
+    const [book, setBook] = useState({
+        title: '',
+        author: ''
+    })
+    const [state, dispatch] = useContext(Context);
+
     return (
         <div className="m-3">
             <Form>
