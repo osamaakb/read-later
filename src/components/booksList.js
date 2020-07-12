@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
-import BooksItem from './booksItem';
-import Context from "../stateProvider";
+import React, {useState, useEffect, useContext} from 'react'
+import BooksItem from './booksItem'
+import {BookContext} from '../stateProvider'
 
-export const BooksList = (props) => {
-    const [state, dispatch] = useContext(Context);
-    return (
-        <div>
+const BooksList = props => {
+  const [books] = useContext(BookContext)
+  return (
+    <div>
+      {books.map((book, index) => (
+        <BooksItem key={index} book={book} />
+      ))}
+    </div>
+  )
+}
 
-        </div>
-    );
-};
+export default BooksList
