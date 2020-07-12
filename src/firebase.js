@@ -1,17 +1,15 @@
-import * as firebase from 'firebase/app';
-import 'firebase/firestore';
+import firebase from 'firebase'
 
-const firebaseConfig = {
-    apiKey: "AIzaSyBNGYwp9XI5C2jbsYZjOJc3ydVN-2g3vjI",
-    authDomain: "readlater-708be.firebaseapp.com",
-    databaseURL: "https://readlater-708be.firebaseio.com",
-    projectId: "readlater-708be",
-    storageBucket: "readlater-708be.appspot.com",
-    messagingSenderId: "264923569873",
-    appId: "1:264923569873:web:aa099d638c43334ad52ff0",
-    measurementId: "G-P51ZMMNK95"
-};
+const firebaseApp = firebase.initializeApp({
+  apiKey: 'AIzaSyA7bBztomNgglpy8J3nRdYN4CIg_tOj4a8',
+  authDomain: 'book-tracker20.firebaseapp.com',
+  databaseURL: 'https://book-tracker20.firebaseio.com',
+  projectId: 'book-tracker20',
+  storageBucket: 'book-tracker20.appspot.com',
+  messagingSenderId: '604684490013',
+  appId: '1:604684490013:web:ef47f5851ecc804ef27df4',
+  measurementId: 'G-HNQFNRHGPV',
+})
 
-firebase.initializeApp(firebaseConfig);
-
-export default firebase;
+const db = firebaseApp.firestore()
+export default db
