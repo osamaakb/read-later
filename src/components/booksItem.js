@@ -23,6 +23,7 @@ function BooksItem({ book }) {
             <div>
                 <p className="font-weight-bold">{book.title}</p>
                 <p>{book.author}</p>
+                <p>{'Added on: ' + new Date(book.addedTime).toLocaleDateString('en-US')}</p>
             </div>
             <div>
                 <FaTrash color="red" onClick={handleDelete} />

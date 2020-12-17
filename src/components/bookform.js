@@ -4,41 +4,42 @@ import API from "../API";
 import Context from "../stateProvider";
 
 const BookForm = () => {
-    const [book, setBook] = useState({
-        title: '',
-        author: ''
+  const [book, setBook] = useState({
+    title: '',
+    author: '',
+    addedTime: Date.now()
+  })
+  const [state, dispatch] = useContext(Context);
+
+
+  const addBook = e => {
+    setBook({ ...book, [e.target.id]: e.target.value });
+  };
+
+  const pushBook = e => {
+    setBook({
+      title: "",
+      author: ""
+    });
+
+    e.preventDefault();
+    dispatch({
+      type: 'IS_LOADING',
+      isLoading: true
     })
-    const [state, dispatch] = useContext(Context);
-
-
-    const addBook = e => {
-        setBook({ ...book, [e.target.id]: e.target.value });
-    };
-
-    const pushBook = e => {
-        setBook({
-            title: "",
-            author: ""
-        });
-
-        e.preventDefault();
+    API.addBook(book).then(doc => {
+      API.getBooks().then(books => {
         dispatch({
-            type: 'IS_LOADING',
-            isLoading: true
+          type: 'SET_BOOKS',
+          booksList: books
         })
-        API.addBook(book).then(doc => {
-            API.getBooks().then(books => {
-                dispatch({
-                    type: 'SET_BOOKS',
-                    booksList: books
-                })
-                dispatch({
-                    type: 'IS_LOADING',
-                    isLoading: false
-                })
-            })
-        });
-    }
+        dispatch({
+          type: 'IS_LOADING',
+          isLoading: false
+        })
+      })
+    });
+  }
 
   return (
     <div className="m-3">
@@ -76,3 +77,6 @@ const BookForm = () => {
     </div>
   );
 };
+
+
+export default BookForm;
